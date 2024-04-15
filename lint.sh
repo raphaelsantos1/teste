@@ -8,3 +8,6 @@ for file in $files; do
         echo "yamlfix applicado no arquivo: $file"
     fi
 done
+
+echo "executando"
+git add . 

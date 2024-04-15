@@ -21,8 +21,9 @@ jobs:
           git diff --name-only ${{ github.event.before }} ${{ github.sha }}
       - name: Yamllint
         id: yamllint_message
-        run: yamllint $(git diff --name-only  ${{ github.event.before }} ${{ github.sha }})>>
-          "$GITHUB_OUPUT"
+        # "secret-number=$the_secret" >> "$GITHUB_OUTPUT"
+        run: echo "message=$(yamllint $(git diff --name-only  ${{ github.event.before }}
+          ${{ github.sha }}))" >> "$GITHUB_OUTPUT"
         continue-on-error: true
   failure:
     name: Failure

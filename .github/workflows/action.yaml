@@ -22,10 +22,10 @@ jobs:
       - name: Yamllint
         id: yamllint_message
         run: echo "test=$(yamllint $(git diff --name-only ${{ github.event.before }}
-          ${{ github.sha }}))" >> $GITHUB_ENV
+          ${{ github.sha }}))"
         continue-on-error: true
       - name: test
-        run: echo $test
+        run: echo $test >> $GITHUB_ENV
   failure:
     name: fail
     runs-on: ubuntu-latest

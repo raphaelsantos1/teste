@@ -25,4 +25,4 @@ jobs:
 
       - name: Yamllint
         id: yamllint_message
-        run: yamllint $(git diff --name-only ${{ github.event.before }} ${{ github.sha }})      
+        run: yamllint $(git diff --name-only ${{ github.event.before }} ${{ github.sha }})

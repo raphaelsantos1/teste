@@ -5,6 +5,8 @@ jobs:
   yamllint:
     name: Yamllint
     runs-on: ubuntu-latest
+    outputs:
+      output1: ${{ steps.yamllint_message.outputs.test }}
     steps:
       - name: Checkout
         uses: actions/checkout@v4.1.2
@@ -20,3 +22,11 @@ jobs:
       - name: Yamllint
         id: yamllint_message
         run: yamllint $(git diff --name-only ${{ github.event.before }} ${{ github.sha }})
+          --no-warning
+        continue-on-error: true
+  failure:
+    name: fail
+    runs-on: ubuntu-latest
+    steps:
+      - name: out
+        run: echo ${{ needs.yamllint.outputs.output1 }}

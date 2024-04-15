@@ -25,4 +25,4 @@ jobs:
         continue-on-error: true
       - name: output
         id: out
-        run: echo ${{ steps.yamllint_message.outputs }}
+        run: echo ${{ steps.yamllint_message.outputs.yamllint_message }}

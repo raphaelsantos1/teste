@@ -15,7 +15,7 @@ jobs:
         id: list_files
         run: |
           echo "Getting modified files..."
-          echo "::set-output files=git diff --name-only ${{ github.event.before }} ${{ github.sha }}"
+          echo ::set-output name=files::$(git diff --name-only ${{ github.event.before }} ${{ github.sha }})
       
       - name: Show me list files
         run: echo ${{ steps.list_files.outputs.files }}

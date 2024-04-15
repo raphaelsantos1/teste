@@ -27,4 +27,4 @@ jobs:
     if: failure()
     steps:
       - name: failure lint
-        run: echo ${{ steps.Yamllint.outpus.yamllint_message  }}
+        run: echo ${{ jobs.Yamllint.yamllint_message.outputs }}

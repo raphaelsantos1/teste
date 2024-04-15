@@ -31,6 +31,3 @@ spec:
             pagerduty: 'true'
             namespace: monitoring
             alertgroup: business_hours
-
-
-

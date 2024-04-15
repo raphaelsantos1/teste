@@ -6,7 +6,7 @@ jobs:
     name: Yamllint
     runs-on: ubuntu-latest
     outputs:
-      lint_message: ${{ steps.yamllint_message.outputs.message }}
+      lint_message: ${{ steps.yamllint_message.outputs.message_out }}
     steps:
       - name: Checkout
         uses: actions/checkout@v4.1.2

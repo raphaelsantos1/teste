@@ -12,7 +12,7 @@ jobs:
           fetch-depth: 2
 
       - name: Install yamllint
-        run: apt install -y yamllint
+        run: sudo apt install -y yamllint
 
       - name: List files
         id: list_files

@@ -2,5 +2,5 @@
 
 
 files=$(git diff --name-only | grep '\.yaml')
-yamlfix $files
+yamlfix "$files"
 done

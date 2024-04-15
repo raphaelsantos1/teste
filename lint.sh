@@ -2,10 +2,5 @@
 
 
 files=$(git diff --name-only | grep '\.yaml')
-for file in $files; do
-    if [[ $file == *.yaml ]]; then
-        yamlfix "$file"
-        echo "yamlfix applicado no arquivo: $file"
-        git add "$file"
-    fi
+yamlfix $files
 done

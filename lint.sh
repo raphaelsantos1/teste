@@ -10,4 +10,4 @@ for file in $files; do
 done
 
 echo "executando"
-git add . 
+git status

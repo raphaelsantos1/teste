@@ -22,7 +22,7 @@ jobs:
       - name: Yamllint
         id: yamllint_message
         run: yamllint $(git diff --name-only  ${{ github.event.before }} ${{ github.sha }})>>
-          $GITHUB_OUPUT
+          "$GITHUB_OUPUT"
         continue-on-error: true
   failure:
     name: Failure
@@ -32,4 +32,4 @@ jobs:
     steps:
       - name: output
         id: out
-        run: echo "${{ needs.yamllint.outputs.lint_message }}"
+        run: echo ${{ needs.yamllint.outputs.lint_message }}

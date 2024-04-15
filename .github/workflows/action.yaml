@@ -24,13 +24,15 @@ jobs:
         run: echo "test=$(yamllint $(git diff --name-only ${{ github.event.before }}
           ${{ github.sha }}))" >> $GITHUB_ENV
         continue-on-error: true
+      - name: test
+        run: echo $test
   failure:
     name: fail
     runs-on: ubuntu-latest
     needs: yamllint
     steps:
       - name: out
-        run: echo ${{ env.test }}
+        run: echo $test
 
         # jobs:
         #   job1:

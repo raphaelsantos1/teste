@@ -22,7 +22,7 @@ jobs:
       - name: Yamllint
         id: yamllint_message
         run: echo "test=$(yamllint $(git diff --name-only ${{ github.event.before }}
-          ${{ github.sha }}))"
+          ${{ github.sha }}))" >> $GITHUB_ENV
         continue-on-error: true
   failure:
     name: fail
@@ -30,7 +30,7 @@ jobs:
     needs: yamllint
     steps:
       - name: out
-        run: echo ${{ needs.yamllint.output.output1 }}
+        run: echo ${{ env.test }}
 
         # jobs:
         #   job1:

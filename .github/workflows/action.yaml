@@ -32,7 +32,7 @@ jobs:
     needs: yamllint
     steps:
       - name: out
-        run: echo "${{ env.test }}"
+        run: echo $test
 
         # jobs:
         #   job1:

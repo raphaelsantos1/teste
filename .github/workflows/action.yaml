@@ -18,4 +18,4 @@ jobs:
         id: list_files
         run: |
           echo "Getting modified files..."
-          echo git diff --name-only ${{ github.event.before }} ${{ github.sha }}
+          git diff --name-only ${{ github.event.before }} ${{ github.sha }}

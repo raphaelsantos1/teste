@@ -22,11 +22,7 @@ jobs:
       - name: Yamllint
         id: yamllint_message
         run: yamllint $(git diff --name-only ${{ github.event.before }} ${{ github.sha }})
-  failure:
-    name: failure
-    runs-on: ubuntu-latest
-    needs: yamllint
-    if: failure()
-    steps:
-      - name: failure lint
-        run: echo ${{ needs.yamllint.outputs.lint_message }}
+        continue-on-error: true
+      - name: output
+        id: out
+        run: echo ${{ steps.yamllint_message.outputs }}

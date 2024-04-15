@@ -1,5 +1,8 @@
 #!/bin/bash
 
+
+files=$(git diff --name-only)
+
 if ! command -v yamlfix &> /dev/null; then
     echo "Yamlfix not install. Install..."
     pip install yamlfix

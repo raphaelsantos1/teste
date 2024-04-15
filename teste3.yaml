@@ -1,6 +1,4 @@
-
-
-
+---
 apiVersion: monitoring.coreos.com/v1
 kind: PrometheusRule
 metadata:
@@ -33,44 +31,6 @@ spec:
             pagerduty: 'true'
             namespace: monitoring
             alertgroup: business_hours
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 
 

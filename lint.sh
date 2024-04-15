@@ -2,23 +2,9 @@
 
 
 files=$(git diff --name-only)
-
-if ! command -v yamlfix &> /dev/null; then
-    echo "Yamlfix not install. Install..."
-    pip install yamlfix
-fi
-
-for file in "$@"; do
-    if [ ! -f "$file" ]; then
-        echo "Arquivo $file não encontrado"
-        continue
+for file in $files; do
+    if [[ $file == *.yaml ]]; then
+        yamlfix "$file"
+        echo "yamlfix applicado no arquivo: $file"
     fi
-    
-    if [[ ! $file =~ \.yaml$ ]];then
-    echo "$file arquivo ignorado"
-    continue
-    fi
-
-    echo "Apply..."
-    yamlfix -v $file
 done

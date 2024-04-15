@@ -1,23 +1,5 @@
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+---
 apiVersion: monitoring.coreos.com/v1
-
-
-
-
-
 kind: PrometheusRule
 metadata:
   name: sre-test
@@ -49,26 +31,6 @@ spec:
             pagerduty: 'true'
             namespace: monitoring
             alertgroup: business_hours
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 
 

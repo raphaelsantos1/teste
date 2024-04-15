@@ -1,7 +1,7 @@
 #!/bin/bash
 
 
-files=$(git diff --name-only)
+files=$(git diff --name-only | grep '\.yaml')
 for file in $files; do
     if [[ $file == *.yaml ]]; then
         yamlfix "$file"

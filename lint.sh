@@ -6,8 +6,6 @@ for file in $files; do
     if [[ $file == *.yaml ]]; then
         yamlfix "$file"
         echo "yamlfix applicado no arquivo: $file"
+        git add "$file"
     fi
 done
-
-echo "executando"
-git status

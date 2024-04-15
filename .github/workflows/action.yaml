@@ -20,3 +20,10 @@ jobs:
       - name: Yamllint
         id: yamllint_message
         run: yamllint $(git diff --name-only ${{ github.event.before }} ${{ github.sha }})
+  failure:
+    name: failure
+    runs-on: ubuntu-latest
+    if: failure()
+    steps:
+      - name: failure lint
+        run: echo ${{ steps.Yamllint.outpus.yamllint_messag  }}

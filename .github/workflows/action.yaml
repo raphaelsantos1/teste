@@ -1,0 +1,19 @@
+name: Yamllint GitHub Actions
+on:
+  - push
+jobs:
+  yamllint:
+    name: Yamllint
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4.1.2
+
+      - name: List files
+        id: list_files
+        run: |
+          echo "Getting modified files..."
+          git diff --name-only ${{ github.event.before }} ${{ github.sha }}
+      
+      - name: Show me list files
+        run: echo ${{ steps.list_files.outputs.list_files }}

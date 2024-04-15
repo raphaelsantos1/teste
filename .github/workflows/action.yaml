@@ -1,6 +1,8 @@
 name: Yamllint GitHub Actions
 on:
   - push
+  - pull_request
+
 jobs:
   yamllint:
     name: Yamllint
@@ -21,4 +23,15 @@ jobs:
           git diff --name-only ${{ github.event.before }} ${{ github.sha }}
       
       - name: Yamllint
+        id: yamllint_message
         run: yamllint $(git diff --name-only ${{ github.event.before }} ${{ github.sha }})
+  
+  failure:
+    name: Yamllint fail
+    runs-on: ubuntu-latest
+    if: ${{ failure()}}
+    steps:
+      - name: Get failure message
+        run: ${{ needs.yamllint.outputs.yamllint_message }}
+    
+    

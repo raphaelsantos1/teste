@@ -3,8 +3,9 @@ name: Yamllint GitHub Actions
 on: [push, pull_request]
 jobs:
   yamllint:
-    name: Yamllint
+    name: Yamllint   
     runs-on: ubuntu-latest
+    
     steps:
       - name: Checkout
         uses: actions/checkout@v4.1.2

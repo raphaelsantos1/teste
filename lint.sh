@@ -11,6 +11,10 @@ for file in "$@"; do
         continue
     fi
     
+    if [[ ! $file =~ \.yaml$ ]];then
+    echo "$file arquivo ignorado"
+    continue
+    fi
 
     echo "Apply..."
     yamlfix -v $file

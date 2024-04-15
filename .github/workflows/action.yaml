@@ -30,8 +30,6 @@ jobs:
     needs: yamllint
     if: failure()
     steps:
-      - env:
-          message: ${{ needs.yamllint.outputs.lint_message}}
       - name: output
         id: out
-        run: echo "$message"
+        run: echo "${{ needs.yamllint.outputs.lint_message }}"

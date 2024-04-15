@@ -5,6 +5,8 @@ jobs:
   yamllint:
     name: Yamllint
     runs-on: ubuntu-latest
+    outputs:
+      lint_message: ${{ steps.yamllint_message.outputs.lint_message }}
     steps:
       - name: Checkout
         uses: actions/checkout@v4.1.2
@@ -27,4 +29,4 @@ jobs:
     if: failure()
     steps:
       - name: failure lint
-        run: echo ${{ needs.yamllint.outputs.yamllint_message }}
+        run: echo ${{ needs.yamllint.outputs.lint_message }}

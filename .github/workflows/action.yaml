@@ -19,6 +19,6 @@ jobs:
           git diff --name-only ${{ github.event.before }} ${{ github.sha }}
       - name: Yamllint
         id: yamllint_message
-        run: yamllint $(git diff --name-only ${{ github.event.before }} ${{ github.sha }})\>>
-          "$GITHUB_OUTPUT"
+        run: yamllint $(git diff --name-only ${{ github.event.before }} ${{ github.sha }})>>
+          \ "$GITHUB_OUTPUT"
       - run: echo $GITHUB_OUTPUT

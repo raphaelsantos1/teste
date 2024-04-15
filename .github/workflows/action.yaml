@@ -22,16 +22,7 @@ jobs:
           echo "Getting modified files..."
           git diff --name-only ${{ github.event.before }} ${{ github.sha }}
       
-      - name: Yamllint
-        id: yamllint_message
-        run: yamllint $(git diff --name-only ${{ github.event.before }} ${{ github.sha }})
-  
-  failure:
-    name: Yamllint fail
-    runs-on: ubuntu-latest
-    if: ${{ failure()}}
-    steps:
-      - name: Get failure message
-        run: ${{ needs.yamllint.outputs.yamllint_message }}
-    
-    
+      - name: Check lint files
+        uses: theodore86/polint-github-action@v2
+        with:
+            path: ./teste3.yaml, ./teste2.yaml

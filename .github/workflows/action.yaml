@@ -21,8 +21,7 @@ jobs:
           done
           cat files.txt
       - name: Test
-        run: echo  "files=$(cat files.txt)" >> '$GITHUB_OUTPUT'
-      
+        run: echo "files=$(cat files.txt)" >> '$GITHUB_OUTPUT'      
       - name: Files output
         run: echo ${{ steps.files.outputs.files }}
       - name: Yamllint

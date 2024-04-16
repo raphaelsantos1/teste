@@ -29,6 +29,9 @@ jobs:
           yamllint ${{ steps.files.outputs.files }} --no-warnings > lint_result.txt
       - name: Test output
         run: echo ${{ steps.exec_yamllint.outputs.yamllint_output }}
+        continue-on-error: true
+      - name: Check file
+        run: cat lint_result.txt
 
         # - name: Yamllint
       #   id: yamllint

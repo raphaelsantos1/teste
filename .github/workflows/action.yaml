@@ -6,7 +6,7 @@ jobs:
     name: yamllint
     runs-on: ubuntu-latest
     outputs:
-      # output1: ${{ steps.message.outputs.yamllint_output }}
+      output1: ${{ steps.message.outputs.yamllint_output }}
       files: ${{ steps.files.outputs.files  }}
     steps:
       - name: Checkout
@@ -34,4 +34,4 @@ jobs:
     if: failure()
     steps:
       - name: teste
-        run: echo ${{ needs.yamllint.outputs.files }}
+        run: echo ${{ needs.yamllint.outputs.output1 }}

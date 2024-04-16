@@ -20,7 +20,7 @@ jobs:
             $n >> files.txt
           done
           cat filex.txt
-          echo "files=$(cat files.txt| tr '\n' ' ' | sed 's/ $/\n/')" >> GITHUB_OUTPUT
+          echo "files=$(cat files.txt| tr '\n' ' ' | sed 's/ $/\n/')" >> $GITHUB_OUTPUT
       - name: Test
         id: test
         run: echo ${{ steps.files.outputs.files }}

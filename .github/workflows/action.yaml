@@ -17,8 +17,10 @@ jobs:
         id: files
         run: |
           for n in $(git diff --name-only ${{ github.event.before }} ${{ github.sha }}); do
-            echo "files=$n" >> GITHUB_OUTPUT
+            $n >> files.txt
           done
+          cat filex.txt
+          echo "files=$(cat files.txt| tr '\n' ' ' | sed 's/ $/\n/')" >> GITHUB_OUTPUT
       - name: Test
         id: test
         run: echo ${{ steps.files.outputs.files }}

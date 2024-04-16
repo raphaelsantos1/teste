@@ -30,7 +30,7 @@ jobs:
           echo "yamllint_output=$(cat lint_result.txt)" >> $GITHUB_OUTPUT
         continue-on-error: true
       - name: Check file
-        run: echo ${{ steps.exec_yamllint.outputs.yamllint_output  }}
+        run: echo ${{ steps.exec_yamllint.outputs.message  }}
 
         # - name: Yamllint
       #   id: yamllint

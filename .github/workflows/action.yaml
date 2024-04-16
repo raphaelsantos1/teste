@@ -27,9 +27,9 @@ jobs:
         id: exec_yamllint
         run: |
           yamllint ${{ steps.files.outputs.files }} --no-warnings > lint_result.txt
-          echo "yamllint_output<<EOF" >> $GITHUB_OUTPUT
+          echo "yamllint_output=$(yamllint_output<<EOF" >> $GITHUB_OUTPUT
           cat lint_result.txt >> $GITHUB_OUTPUT
-          echo "EOF" >> $GITHUB_OUTPUT
+          echo "EOF" >> $GITHUB_OUTPUT)"
         continue-on-error: true
       - name: Check file
         run: echo ${{ steps.exec_yamllint.outputs.yamllint_output  }}

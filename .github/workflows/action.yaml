@@ -6,7 +6,7 @@ jobs:
     name: yamllint
     runs-on: ubuntu-latest
     outputs:
-      message: ${{ steps.exec_yamllint.outputs.message }}
+      message: ${{ steps.exec_yamllint.outputs.yamllint_output }}
       files: ${{ steps.files.outputs.files  }}
     steps:
       - name: Checkout
@@ -27,10 +27,12 @@ jobs:
         id: exec_yamllint
         run: |
           yamllint ${{ steps.files.outputs.files }} --no-warnings > lint_result.txt
-          echo "message=$(cat lint_result.txt)" >> $GITHUB_OUTPUT
         continue-on-error: true
       - name: Test
-        run: echo "message=$(cat lint_result.txt)" >> $GITHUB_OUTPUT
+        run: |
+          echo "yamllint_output<<EOF" >> "$GITHUB_OUTPUT"
+          cat lint_result.txt >> "$GITHUB_OUTPUT"
+          echo "EOF" >> "$GITHUB_OUTPUT"
       - name: Cat test
         run: echo ${{ steps.exec_yamllint.outputs.message }}
         # - name: Yamllint

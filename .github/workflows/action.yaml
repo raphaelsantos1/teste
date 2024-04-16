@@ -31,10 +31,10 @@ jobs:
       - name: test
         id: test
         run: |
-          yamllint=$(cat << EOF
+          echo "yamllint=$(cat << EOF
           $(cat teste1.yaml)
           EOF
-          )
+          )" >> $GITHUB_OUTPUT
       - name: Cat test
         run: echo ${{ steps.test.outputs.message }}
         # - name: Yamllint

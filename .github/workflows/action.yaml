@@ -34,16 +34,7 @@ jobs:
           echo "yamllint_output<<EOF"$'\n'"cat lint_result.txt"$'\n'EOF >> $GITHUB_OUTPUT
         shell: bash
       - name: Cat test
-        run: echo ${{ steps.test.outputs.message}}
-        # - name: Yamllint
-      #   id: yamllint
-      #   uses: karancode/yamllint-github-action@v2.1.1
-      #   with:
-      #     yamllint_file_or_dir: ${{ steps.files.outputs.files }}
-      #     yamllint_strict: false
-      #     yamllint_comment: true
-      #   env:
-      #     GITHUB_ACCESS_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        run: echo ${{ steps.test.outputs.yamllint_output}}
   failure:
     name: Failure
     needs: yamllint

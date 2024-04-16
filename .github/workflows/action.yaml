@@ -24,5 +24,10 @@ jobs:
         run: yamllint $(git diff --name-only ${{ github.event.before }} ${{ github.sha }})
           --no-warning
         continue-on-error: true
-      - name: Prometheus rules
-        run: echo ${{ steps.list_files.outputs.files }}
+      - name: Promtool Check
+        uses: karancode/promtool-action@v0.0.1
+        with:
+          prom_version: 2.9.2
+          prom_check_subcommand: rules
+          prom_check_files: ${{ steps.list_files.outputs.files }}
+          prom_comment: true

@@ -20,10 +20,8 @@ jobs:
             echo $file >> files.txt
           done
       - name: Test
-        run: echo ${{ steps.files.outputs.files }}     
+        run: files=$(cat filex.txt) >> '$GITHUB_OUTPUT'
       
-      - name: test01
-        run: ls -lahrt
       # - name: Yamllint
       #   id: message
       #   uses: karancode/yamllint-github-action@v2.1.1

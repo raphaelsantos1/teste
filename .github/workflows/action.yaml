@@ -6,26 +6,27 @@ jobs:
     name: yamllint
     runs-on: ubuntu-latest
     outputs:
-      output1: ${{ steps.yamllint_message.outputs.output1 }}
+      # output1: ${{ steps.message.outputs.yamllint_output }}
+      files: ${{ steps.files.outputs.files  }}
     steps:
       - name: Checkout
         uses: actions/checkout@v4.1.2
         with:
           fetch-depth: 0
-      - name: Install yamllint
-        run: sudo apt install -y yamllint
-      - name: List files
-        id: list_files
+      - name: List File
+        id: files
         run: |
           echo "Getting modified files..."
-          echo git diff --name-only ${{ github.event.before }} ${{ github.sha }}
-      - name: Yamllint
-        id: yamllint_message
-        run: |
-          echo "::set-output name=output1::$(yamllint teste3.yaml)"
-        continue-on-error: true
+          echo "files=$(git diff --name-only ${{ github.event.before }} ${{ github.sha }})" >> GITHUB_OUTPUT
       - name: Test
-        run: echo ${{ steps.yamllint_message.outputs.output1 }}
+        run: echo ${{ steps.files.outputs.files }}
+      # - name: 'Yamllint'
+      #   id: message
+      #   uses: karancode/yamllint-github-action@master
+      #   with:
+      #     yamllint_file_or_dir: '<yaml_file_or_dir>'
+      #     yamllint_strict: false
+      #     yamllint_comment: true
   teste:
     name: teste
     runs-on: ubuntu-latest

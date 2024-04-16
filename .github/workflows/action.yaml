@@ -27,7 +27,8 @@ jobs:
       - name: Test
         id: test
         run: |
-          echo "output1=$(cat teste3.yaml)" >> $GITHUB_OUTPUT
+          message=$(cat teste3.yaml) 
+          echo "output1=$message" >> $GITHUB_OUTPUT
       # - name: Yamllint
       #   id: message
       #   uses: mathiasvr/command-output@v2.0.0

@@ -19,16 +19,16 @@ jobs:
         run: |
           echo "Getting modified files..."
           git diff --name-only ${{ github.event.before }} ${{ github.sha }}
-  #     - name: Yamllint
-  #       id: yamllint_message
-  #       run: echo "output1=$(yamllint $(git diff --name-only ${{ github.event.before }}
-  #         ${{ github.sha }}))" >> "$GITHUB_OUTPUTS"
-  #       continue-on-error: true
-  # failure:
-  #   name: fail
-  #   if: failure()
-  #   runs-on: ubuntu-latest
-  #   needs: yamllint
-  #   steps:
-  #     - name: out
-  #       run: echo "${{ needs.yamllint.outputs.output1 }}"
+      - name: Yamllint
+        id: yamllint_message
+        run: echo "output1=$(yamllint $(git diff --name-only ${{ github.event.before }}
+          ${{ github.sha }}))" >> "$GITHUB_OUTPUTS"
+        continue-on-error: true
+  failure:
+    name: fail
+    if: failure()
+    runs-on: ubuntu-latest
+    needs: yamllint
+    steps:
+      - name: out
+        run: echo "${{ needs.yamllint.outputs.output1 }}"

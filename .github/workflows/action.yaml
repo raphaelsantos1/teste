@@ -19,16 +19,18 @@ jobs:
           for file in $(git diff --name-only ${{ github.event.before }} ${{ github.sha }}); do
             echo $file >> files.txt
           done
-          echo "files=$(cat files.txt)" >> $GITHUB_OUTPUT
       - name: Test
         run: echo ${{ steps.files.outputs.files }}     
-      - name: Yamllint
-        id: message
-        uses: karancode/yamllint-github-action@v2.1.1
-        with:
-          yamllint_file_or_dir: ${{ steps.files.outputs.files }}
-          yamllint_strict: false
-          yamllint_comment: true
+      
+      - name: test01
+        run: ls -lahrt
+      # - name: Yamllint
+      #   id: message
+      #   uses: karancode/yamllint-github-action@v2.1.1
+      #   with:
+      #     yamllint_file_or_dir: ${{ steps.files.outputs.files }}
+      #     yamllint_strict: false
+      #     yamllint_comment: true
   # teste:
   #   name: teste
   #   runs-on: ubuntu-latest

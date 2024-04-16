@@ -17,7 +17,7 @@ jobs:
         id: files
         run: |
           echo "Getting modified files..."
-          echo "files=$(git diff --name-only ${{ github.event.before }} ${{ github.sha }})"
+          echo "files=$(git diff --name-only ${{ github.event.before }} ${{ github.sha }})" >> $GITHUB_OUTPUT
       - name: Test
         run: echo ${{ steps.files.outputs.files }}     
       - name: Yamllint

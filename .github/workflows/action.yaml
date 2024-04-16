@@ -19,9 +19,12 @@ jobs:
           for file in $(git diff --name-only ${{ github.event.before }} ${{ github.sha }}); do
             echo $file >> files.txt
           done
+          cat files.txt
       - name: Test
         run: files=$(cat files.txt) >> '$GITHUB_OUTPUT'
       
+      - name: Files output
+        run: ${{ steps.files.outputs.files }}
       - name: Yamllint
         id: message
         uses: karancode/yamllint-github-action@v2.1.1

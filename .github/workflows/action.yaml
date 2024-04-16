@@ -25,6 +25,7 @@ jobs:
           ${{ github.sha }}) --no-warning) >> $GITHUB_OUTPUT
   failure:
     name: fail
+    if: failure()
     runs-on: ubuntu-latest
     needs: yamllint
     steps:

@@ -25,6 +25,8 @@ jobs:
           message=$(yamllint $(git diff --name-only ${{ github.event.before }} ${{ github.sha }}) --no-warning)
           echo "output1=$message"
         continue-on-error: true
+      - name: Test
+        run: echo ${{ steps.yamllint_message.outputs.output1 }}
   teste:
     name: teste
     runs-on: ubuntu-latest

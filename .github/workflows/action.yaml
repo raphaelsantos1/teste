@@ -38,6 +38,7 @@ jobs:
       - name: Cat output
         run: echo ${{ steps.test.outputs.yamllint_output }}
         shell: bash
+        continue-on-error: true
   failure:
     name: Failure
     needs: yamllint

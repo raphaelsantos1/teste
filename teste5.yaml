@@ -8,7 +8,7 @@ metadata:
     prometheus: prometheus-app
 spec:
   groups:
-    - name: SRE_TEST
+    - name: SRE_TEST   
       rules:                  
         - alert: SRE_TEST
       # Condition for alerting

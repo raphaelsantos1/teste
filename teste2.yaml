@@ -7,7 +7,7 @@ metadata:
   labels:
     prometheus: prometheus-app         
 spec:
-  groups:
+  groups:    
     - name: SRE_TEST       
       rules:
         - alert: SRE_TEST

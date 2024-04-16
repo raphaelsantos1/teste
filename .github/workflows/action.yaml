@@ -7,7 +7,7 @@ jobs:
     runs-on: ubuntu-latest
     outputs:
     #   output1: ${{ steps.message.outputs.yamllint_output }}
-      files: ${{ steps.files.outputs.files  }}
+      files: ${{ steps.test.outputs.files  }}
     steps:
       - name: Checkout
         uses: actions/checkout@v4.1.2
@@ -21,9 +21,10 @@ jobs:
           done
           cat files.txt
       - name: Test
+        id: test
         run: echo "files=$(cat files.txt)" >> $GITHUB_OUTPUT      
       - name: Files output
-        run: echo ${{ steps.files.outputs.files }}
+        run: echo ${{ steps.test.outputs.files }}
       - name: Yamllint
         id: message
         uses: karancode/yamllint-github-action@v2.1.1

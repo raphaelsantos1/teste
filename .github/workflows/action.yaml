@@ -6,7 +6,7 @@ jobs:
     name: yamllint
     runs-on: ubuntu-latest
     outputs:
-      #   output1: ${{ steps.message.outputs.yamllint_output }}
+      message: ${{ steps.yamllint_output.outputs.message }}
       files: ${{ steps.files.outputs.files  }}
     steps:
       - name: Checkout
@@ -25,6 +25,8 @@ jobs:
       - name: Exec yamllint
         id: yamllint_output
         run: echo "message=$(yamllint ${{ steps.files.outputs.files }} --no-warnings)"
+      - name: Test output
+        run: echo ${{ steps.yamllint_output.outputs.message }}
 
       # - name: Yamllint
       #   id: message

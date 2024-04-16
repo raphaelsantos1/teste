@@ -9,7 +9,7 @@ metadata:
 spec:
   groups:
     - name: SRE_TEST    
-    # testeeeeeeeeeeeeeeeeeeeeeeeee
+    # testeeeeeeeeeeeeeeeeeeeeeeeeeeeeee
       rules:    
         - alert: SRE_TEST    
       # Condition for alerting

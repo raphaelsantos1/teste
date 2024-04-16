@@ -18,11 +18,11 @@ jobs:
         id: list_files
         run: |
           echo "Getting modified files..."
-          echo "output1=$(git diff --name-only ${{ github.event.before }} ${{ github.sha }})"
+          echo git diff --name-only ${{ github.event.before }} ${{ github.sha }}
       - name: Yamllint
         id: yamllint_message
-        run: yamllint $(git diff --name-only ${{ github.event.before }} ${{ github.sha }})
-          --no-warning >> $GITHUB_OUTPUT
+        run: echo "output1=$(yamllint $(git diff --name-only ${{ github.event.before }}
+          ${{ github.sha }}) --no-warning)" >> $GITHUB_OUTPUT
         continue-on-error: true
   teste:
     name: teste

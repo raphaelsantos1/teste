@@ -22,8 +22,7 @@ jobs:
       - name: Yamllint
         id: yamllint_message
         run: output1=$(yamllint $(git diff --name-only ${{ github.event.before }}
-          ${{ github.sha }}))
-        continue-on-error: true
+          ${{ github.sha }}))" >> "$GITHUB_OUTPUTS"
   failure:
     name: fail
     if: failure()

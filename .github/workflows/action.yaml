@@ -6,7 +6,7 @@ jobs:
     name: yamllint
     runs-on: ubuntu-latest
     outputs:
-      message: ${{ steps.test.outputs.yamllint_output }}
+      # message: ${{ steps.test.outputs.yamllint_output }}
       files: ${{ steps.files.outputs.files  }}
     steps:
       - name: Checkout
@@ -49,11 +49,11 @@ jobs:
       #     yamllint_comment: true
       #   env:
       #     GITHUB_ACCESS_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-  # failure:
-  #   name: Failure
-  #   needs: yamllint
-  #   if: failure()
-  #   runs-on: ubuntu-latest
-  #   steps:
-  #     - name: Output
-  #       run: ${{  needs.yamllint.outputs.message  }}
+  failure:
+    name: Failure
+    needs: yamllint
+    # if: failure()
+    runs-on: ubuntu-latest
+    steps:
+      - name: Output
+        run: $yamllint_output

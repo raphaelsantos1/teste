@@ -1,4 +1,3 @@
-
 ---
   name: Yamllint GitHub Actions
   on: [push, pull_request]
@@ -23,3 +22,10 @@
             echo "files=$(cat files.txt)" >> $GITHUB_OUTPUT
         - name: Test
           run: echo ${{ steps.files.outputs.files }}
+        - name: Yamllint
+          id: message
+          uses: karancode/yamllint-github-action@v2.1.1
+          with:
+            yamllint_file_or_dir: ${{ steps.files.outputs.files }}
+            yamllint_strict: false
+            yamllint_comment: true

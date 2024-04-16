@@ -32,10 +32,10 @@ jobs:
         id: test
         run: |
           {
-            echo "yamllint_output<< EOF"
-            cat lint_result.txt"
-            echo "EOF"
-          } >> $GITHUB_OUTPUT
+            echo "yamllint_output<<EOF" >> $GITHUB_OUTPUT
+            cat lint_result.txt" >> $GITHUB_OUTPUT
+            echo "EOF" >> $GITHUB_OUTPUT
+          } 
           exit 0
         shell: bash
       - name: Cat test

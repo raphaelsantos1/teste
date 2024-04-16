@@ -19,7 +19,7 @@ jobs:
           echo "Getting modified files..."
           git diff --name-only ${{ github.event.before }} ${{ github.sha }}
       - name: Test
-        run: echo ${{ steps.files.outputs.files }}
+        run: echo ${{ steps.files.outputs.files }}     
       - name: Yamllint
         id: message
         uses: karancode/yamllint-github-action@v2.1.1

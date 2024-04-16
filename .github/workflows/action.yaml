@@ -25,4 +25,4 @@ jobs:
           --no-warning
         continue-on-error: true
       - name: Prometheus rules
-        run: echo '$files'
+        run: echo '${{env.files}}'

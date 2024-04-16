@@ -20,7 +20,7 @@ jobs:
             echo $file >> files.txt
           done
       - name: Test
-        run: files=$(cat filex.txt) >> '$GITHUB_OUTPUT'
+        run: files=$(cat files.txt) >> '$GITHUB_OUTPUT'
       
       # - name: Yamllint
       #   id: message

@@ -11,7 +11,7 @@ jobs:
       - name: Checkout
         uses: actions/checkout@v4.1.2
         with:
-          fetch-depth: 0
+          fetch-depth: 2
       - name: Install yamllint
         run: sudo apt install -y yamllint
       - name: List files
@@ -21,8 +21,8 @@ jobs:
           git diff --name-only ${{ github.event.before }} ${{ github.sha }}
       - name: Yamllint
         id: yamllint_message
-        run: output1=$(yamllint $(git diff --name-only ${{ github.event.before }}
-          ${{ github.sha }})) >> "$GITHUB_OUTPUTS"
+        run: echo "output1=$(yamllint $(git diff --name-only ${{ github.event.before }}
+          ${{ github.sha }}))" >> "$GITHUB_OUTPUTS"
   failure:
     name: fail
     if: failure()

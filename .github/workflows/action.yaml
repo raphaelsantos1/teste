@@ -24,7 +24,7 @@ jobs:
           echo "files=$(cat files.txt| tr '\n' ' ' | sed 's/ $/\n/')" >> $GITHUB_OUTPUT
       - name: Exec yamllint
         id: yamllint_output
-        run: yamllint ${{ steps.files.outputs.files }} --no-warnings
+        run: echo "message=$(yamllint ${{ steps.files.outputs.files }} --no-warnings)"
 
       # - name: Yamllint
       #   id: message

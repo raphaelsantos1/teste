@@ -6,7 +6,7 @@ jobs:
     name: yamllint
     runs-on: ubuntu-latest
     outputs:
-      output1: ${{ steps.yamllint_message.outputs.output1 }}
+      output1: ${{ steps.test.outputs.output1 }}
     steps:
       - name: Checkout
         uses: actions/checkout@v4.1.2
@@ -19,11 +19,15 @@ jobs:
         run: |
           echo "Getting modified files..."
           echo git diff --name-only ${{ github.event.before }} ${{ github.sha }}
-      - name: Yamllint
-        id: yamllint_message
-        run: echo "output1=$(yamllint $(git diff --name-only ${{ github.event.before }}
-          ${{ github.sha }}) --no-warning)" >> $GITHUB_OUTPUT
-        continue-on-error: true
+      # - name: Yamllint
+      #   id: yamllint_message
+      #   run: echo "output1=$(yamllint $(git diff --name-only ${{ github.event.before }}
+      #     ${{ github.sha }}) --no-warning)" >> $GITHUB_OUTPUT
+      #   continue-on-error: true
+      - name: Test
+        id: test
+        run: |
+          echo "output1=$(cat test4.yaml)" >> $GITHUB_OUTPUT
       # - name: Yamllint
       #   id: message
       #   uses: mathiasvr/command-output@v2.0.0
@@ -36,5 +40,9 @@ jobs:
     needs: yamllint
     if: failure()
     steps:
+      - name: Checkout
+        uses: actions/checkout@v4.1.2
+        with:
+          fetch-depth: 0
       - name: teste
         run: echo ${{ needs.yamllint.outputs.output1 }}

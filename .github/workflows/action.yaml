@@ -20,8 +20,8 @@ jobs:
             echo $file >> files.txt
           done
           echo "files=$(cat files.txt)"
-  #     - name: Test
-  #       run: echo ${{ steps.files.outputs.files }}     
+      - name: Test
+        run: echo ${{ steps.files.outputs.files }}     
   #     - name: Yamllint
   #       id: message
   #       uses: karancode/yamllint-github-action@v2.1.1

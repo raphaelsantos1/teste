@@ -27,7 +27,7 @@ jobs:
           yamllint_file_or_dir: ${{ steps.files.outputs.files }}
           yamllint_strict: false
           yamllint_comment: true
-          yamllint_config_datapath: '{extends: relaxed, rules: {line-length: {max:
-            120}}}'
+          yamllint_config_datapath: |
+            '{extends: relaxed, rules: {line-length: {max: 120}}}'
         env:
           GITHUB_ACCESS_TOKEN: ${{ secrets.GITHUB_TOKEN }}

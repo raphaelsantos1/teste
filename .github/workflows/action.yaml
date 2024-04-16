@@ -31,9 +31,10 @@ jobs:
       - name: test
         id: test
         run: |
-          echo "yamllint_output << EOF" >> $GITHUB_OUTPUT
-          $(cat lint_result.txt) >> $GITHUB_OUTPUT
-          echo "EOF" >> $GITHUB_OUTPUT
+          echo "yamllint=$(cat << EOF
+          $(cat teste1.yaml)
+          EOF
+          )" >> $GITHUB_OUTPUT
         shell: bash
       - name: Cat test
         run: echo ${{ steps.test.outputs.message }}

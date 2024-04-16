@@ -33,13 +33,13 @@ jobs:
         run: |
           {
             echo "yamllint_output<<EOF"
-            cat lint_result.txt"
+            cat lint_result.txt
             echo EOF 
-          } >> "$GITHUB_ENV" 
+          } >> "$GITHUB_OUTPUT" 
           exit 0
         shell: bash
       - name: Cat test
-        run: echo $yamllint_output
+        run: echo ${{ steps.test.outputs.message }}
         # - name: Yamllint
       #   id: yamllint
       #   uses: karancode/yamllint-github-action@v2.1.1

@@ -16,8 +16,8 @@ jobs:
       - name: List File
         id: files
         run: |
-          for file in $(git diff --name-only ${{ github.event.before }} ${{ github.sha }}); do
-            echo $file >> files.txt
+          for n in $(git diff --name-only ${{ github.event.before }} ${{ github.sha }}); do
+            echo $n >> files.txt
           done
           cat files.txt
       - name: Test

@@ -22,8 +22,7 @@ jobs:
       - name: Yamllint
         id: yamllint_message
         run: |
-          message=$(yamllint teste3.yaml)
-          echo "output1=$message" >> $GITHUB_OUTPUT
+          echo "::set-output name=output1::$(yamllint teste3.yaml)"
         continue-on-error: true
       - name: Test
         run: echo ${{ steps.yamllint_message.outputs.output1 }}

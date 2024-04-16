@@ -32,7 +32,7 @@ jobs:
         id: test
         run: |
           echo "yamllint=$(cat << EOF
-          $(cat teste1.yaml)
+          $(cat lint_result.txt)
           EOF
           )" >> $GITHUB_OUTPUT
       - name: Cat test

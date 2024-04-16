@@ -35,6 +35,7 @@ jobs:
           $(cat lint_result.txt)
           EOF
           )" >> $GITHUB_OUTPUT
+          exit 0
         shell: bash
       - name: Cat test
         run: echo ${{ steps.test.outputs.message }}

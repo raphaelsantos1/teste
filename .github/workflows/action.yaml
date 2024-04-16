@@ -31,9 +31,7 @@ jobs:
       - name: test
         id: test
         run: |
-          echo "yamllint_output<<EOF" >> "$GITHUB_OUTPUT"
-          cat lint_result.txt >> "$GITHUB_OUTPUT"
-          echo "EOF" >> "$GITHUB_OUTPUT"
+          echo "yamllint_output<<EOF"$'\n'"cat lint_result.txt"$'\n'EOF >> $GITHUB_OUTPUT
           # {
           #   echo "yamllint_output<<EOF"
           #   cat lint_result.txt

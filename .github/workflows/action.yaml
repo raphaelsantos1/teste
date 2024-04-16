@@ -1,41 +1,25 @@
+
 ---
-name: Yamllint GitHub Actions
-on: [push, pull_request]
-jobs:
-  yamllint:
-    name: yamllint
-    runs-on: ubuntu-latest
-    outputs:
-    #   output1: ${{ steps.message.outputs.yamllint_output }}
-      files: ${{ steps.files.outputs.files  }}
-    steps:
-      - name: Checkout
-        uses: actions/checkout@v4.1.2
-        with:
-          fetch-depth: 0
-      - name: List File
-        id: files
-        run: |
-          for file in $(git diff --name-only ${{ github.event.before }} ${{ github.sha }}); do
-            $file >> files.txt
-          done
-          cat files.txt
-      - name: Test
-        id: test
-        run: echo ${{ steps.files.outputs.files }}
-      - name: Yamllint
-        id: message
-        uses: karancode/yamllint-github-action@v2.1.1
-        with:
-          yamllint_file_or_dir: ${{ steps.files.outputs.files }}
-          yamllint_strict: false
-          yamllint_comment: true
-  # teste:
-  #   name: teste
-  #   runs-on: ubuntu-latest
-  #   needs: yamllint
-  #   if: failure()
-  #   steps:
-  #     - name: teste
-  #       run: echo ${{ needs.yamllint.outputs.output1 }}
-  #       continue-on-error: true
+  name: Yamllint GitHub Actions
+  on: [push, pull_request]
+  jobs:
+    yamllint:
+      name: yamllint
+      runs-on: ubuntu-latest
+      outputs:
+      #   output1: ${{ steps.message.outputs.yamllint_output }}
+        files: ${{ steps.files.outputs.files  }}
+      steps:
+        - name: Checkout
+          uses: actions/checkout@v4.1.2
+          with:
+            fetch-depth: 0
+        - name: List File
+          id: files
+          run: |
+            for file in $(git diff --name-only ${{ github.event.before }} ${{ github.sha }}); do
+              echo $file >> files.txt
+            done
+            echo "files=$(cat files.txt)"
+        - name: Test
+          run: echo ${{ steps.files.outputs.files }}     

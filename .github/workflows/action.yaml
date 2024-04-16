@@ -22,7 +22,7 @@ jobs:
         run: echo ${{ steps.files.outputs.files }}
       - name: Yamllint
         id: message
-        uses: karancode/yamllint-github-action@master
+        uses: karancode/yamllint-github-action@v2.1.1
         with:
           yamllint_file_or_dir: ${{ steps.files.outputs.files }}
           yamllint_strict: false

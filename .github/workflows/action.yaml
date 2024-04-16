@@ -35,6 +35,7 @@ jobs:
           $(cat lint_result.txt)
           EOF
           )" >> $GITHUB_OUTPUT
+          echo "::endgroup::"
       - name: Cat test
         run: echo ${{ steps.test.outputs.message }}
         # - name: Yamllint

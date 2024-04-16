@@ -1,0 +1,6 @@
+teste1.yaml
+  17:66     error    trailing spaces  (trailing-spaces)
+
+teste5.yaml
+  15:31     error    trailing spaces  (trailing-spaces)
+

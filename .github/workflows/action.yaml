@@ -6,13 +6,15 @@ jobs:
     name: yamllint
     runs-on: ubuntu-latest
     outputs:
-      message: ${{ steps.yamllint.outputs.yamllint_output }}
+      message: ${{ steps.exec_yamllint.outputs.yamllint_output }}
       files: ${{ steps.files.outputs.files  }}
     steps:
       - name: Checkout
         uses: actions/checkout@v4.1.2
         with:
           fetch-depth: 0
+      - name: Install yamllint
+        run: sudo apt install -y yamllint
       - name: List File
         id: files
         run: |
@@ -20,20 +22,30 @@ jobs:
             echo $file >> files.txt
           done
           echo "files=$(cat files.txt| tr '\n' ' ' | sed 's/ $/\n/')" >> $GITHUB_OUTPUT
-      - name: Yamllint
-        id: yamllint
-        uses: karancode/yamllint-github-action@v2.1.1
-        with:
-          yamllint_file_or_dir: ${{ steps.files.outputs.files }}
-          yamllint_strict: false
-          yamllint_comment: true
-        env:
-          GITHUB_ACCESS_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-  failure:
-    name: Failure
-    needs: yamllint
-    if: failure()
-    runs-on: ubuntu-latest
-    steps:
-      - name: Output
-        run: ${{  needs.yamllint.outputs.message  }}
+      - name: Exec Yamllint
+        id: exec_yamllint
+        run: |
+          yamllint ${{ steps.files.outputs.files }} --no-warnings >> lint_result.txt
+          echo "yamllint_output<<EOF" >> "$GITHUB_OUTPUT"
+          cat lint_result.txt >> "$GITHUB_OUTPUT"
+          echo "EOF" >> "$GITHUB_OUTPUT"
+      - name: Test output
+        run: echo ${{ steps.exec_yamllint.outputs.yamllint_output }}
+
+        # - name: Yamllint
+      #   id: yamllint
+      #   uses: karancode/yamllint-github-action@v2.1.1
+      #   with:
+      #     yamllint_file_or_dir: ${{ steps.files.outputs.files }}
+      #     yamllint_strict: false
+      #     yamllint_comment: true
+      #   env:
+      #     GITHUB_ACCESS_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+  # failure:
+  #   name: Failure
+  #   needs: yamllint
+  #   if: failure()
+  #   runs-on: ubuntu-latest
+  #   steps:
+  #     - name: Output
+  #       run: ${{  needs.yamllint.outputs.message  }}

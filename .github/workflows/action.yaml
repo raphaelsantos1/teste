@@ -18,11 +18,11 @@ jobs:
         id: list_files
         run: |
           echo "Getting modified files..."
-          files=$(git diff --name-only ${{ github.event.before }} ${{ github.sha }})
+          files=$(git diff --name-only ${{ github.event.before }} ${{ github.sha }}) >> $GITHUB_OUTPUT
       - name: Yamllint
         id: yamllint_message
         run: yamllint $(git diff --name-only ${{ github.event.before }} ${{ github.sha }})
           --no-warning
         continue-on-error: true
       - name: Prometheus rules
-        run: echo '${{env.files}}'
+        run: echo ${{ steps.list_files.outputs.files }}

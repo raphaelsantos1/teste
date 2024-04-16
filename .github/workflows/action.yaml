@@ -18,7 +18,7 @@ jobs:
         run: |
           echo "Getting modified files..."
           for files in $(git diff --name-only ${{ github.event.before }} ${{ github.sha }}); do
-              files >> files.txt
+              $files >> files.txt
           done
           echo "files=$(cat files.txt)" >> $GITHUB_OUTPUT
       - name: Test

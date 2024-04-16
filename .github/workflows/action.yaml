@@ -16,7 +16,7 @@ jobs:
       - name: List File
         id: files
         run: |
-          echo "files=$(git diff --name-only ${{ github.event.before }} ${{ github.sha }})" >> $GITHUB_OUPUT
+          echo "files=$(git diff --name-only ${{ github.event.before }} ${{ github.sha }})" >> $GITHUB_OUTPUT
   #     - name: Test
   #       run: echo ${{ steps.files.outputs.files }}     
   #     - name: Yamllint

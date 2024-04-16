@@ -5,9 +5,9 @@ jobs:
   yamllint:
     name: yamllint
     runs-on: ubuntu-latest
-    # outputs:
+    outputs:
     #   output1: ${{ steps.message.outputs.yamllint_output }}
-    #   files: ${{ steps.files.outputs.files  }}
+      files: ${{ steps.files.outputs.files  }}
     steps:
       - name: Checkout
         uses: actions/checkout@v4.1.2
@@ -16,7 +16,7 @@ jobs:
       - name: List File
         id: files
         run: |
-          git diff --name-only ${{ github.event.before }} ${{ github.sha }}
+          echo "files=$(git diff --name-only ${{ github.event.before }} ${{ github.sha }})" >> $GITHUB_OUPUT
   #     - name: Test
   #       run: echo ${{ steps.files.outputs.files }}     
   #     - name: Yamllint

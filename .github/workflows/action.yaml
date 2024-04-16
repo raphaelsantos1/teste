@@ -21,18 +21,16 @@ jobs:
           git diff --name-only ${{ github.event.before }} ${{ github.sha }}
       - name: Yamllint
         id: yamllint_message
-        run: echo "test=$(yamllint $(git diff --name-only ${{ github.event.before }}
-          ${{ github.sha }}))"
+        run: echo "output1=$(yamllint $(git diff --name-only ${{ github.event.before }}
+          ${{ github.sha }}))" >> "$GITHUB_OUTPUT"
         continue-on-error: true
-      - name: test
-        run: echo $test >> $GITHUB_ENV
   failure:
     name: fail
     runs-on: ubuntu-latest
     needs: yamllint
     steps:
       - name: out
-        run: echo $test
+        run: echo "${{ needs.yamllint.outputs.output1 }}"
 
         # jobs:
         #   job1:

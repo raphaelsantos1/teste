@@ -18,7 +18,7 @@ jobs:
         id: list_files
         run: |
           echo "Getting modified files..."
-          echo "files=$(git diff --name-only ${{ github.event.before }} ${{ github.sha }})" >> $GITHUB_OUTPUT
+          echo "output1=$(git diff --name-only ${{ github.event.before }} ${{ github.sha }})" >> $GITHUB_OUTPUT
       - name: Yamllint
         id: yamllint_message
         run: yamllint $(git diff --name-only ${{ github.event.before }} ${{ github.sha }})
@@ -30,4 +30,4 @@ jobs:
     needs: yamllint
     steps:
       - name: teste
-        run: ls -lahrt && cat output.txt
+        run: echo ${{ needs.yamllint.outputs.output1 }}

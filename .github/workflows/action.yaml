@@ -7,7 +7,7 @@ jobs:
     runs-on: ubuntu-latest
     outputs:
     #   output1: ${{ steps.message.outputs.yamllint_output }}
-      files: ${{ steps.test.outputs.files  }}
+      files: ${{ steps.files.outputs.files  }}
     steps:
       - name: Checkout
         uses: actions/checkout@v4.1.2
@@ -17,14 +17,11 @@ jobs:
         id: files
         run: |
           for n in $(git diff --name-only ${{ github.event.before }} ${{ github.sha }}); do
-            echo $n >> files.txt
+            echo "files=$n" >> GITHUB_OUTPUT
           done
-          cat files.txt
       - name: Test
         id: test
-        run: echo "files=$(cat files.txt)" >> $GITHUB_OUTPUT      
-      - name: Files output
-        run: echo ${{ steps.test.outputs.files }}
+        run: echo ${{ steps.files.outputs.files }}
       - name: Yamllint
         id: message
         uses: karancode/yamllint-github-action@v2.1.1

@@ -33,7 +33,9 @@ jobs:
         run: |
           echo "yamllint_output<<EOF"$'\n'"$(cat lint_result.txt)"$'\n'EOF >> $GITHUB_OUTPUT
         shell: bash
-      - name: Cat test
+      - name: CAT
+        run: cat lint_result.txt
+      - name: Cat output
         run: echo ${{ steps.test.outputs.yamllint_output }}
         shell: bash
   failure:
@@ -44,3 +46,4 @@ jobs:
     steps:
       - name: Output
         run: ${{ needs.yamllint.outputs.message }}
+        shell: bash

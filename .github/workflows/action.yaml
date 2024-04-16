@@ -32,9 +32,9 @@ jobs:
         id: test
         run: |
           {
-            "echo "yamllint_output<< EOF"
-            "cat lint_result.txt"
-            "EOF"
+            echo "yamllint_output<< EOF"
+            cat lint_result.txt"
+            echo "EOF"
             )
           } >> $GITHUB_OUTPUT
           exit 0

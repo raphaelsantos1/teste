@@ -29,6 +29,8 @@ jobs:
           yamllint ${{ steps.files.outputs.files }} --no-warnings > lint_result.txt
           echo "yamllint_output=$(cat lint_result.txt)" >> $GITHUB_OUTPUT
         continue-on-error: true
+      - name: Test
+        run: cat lint_result.txt
       - name: Check file
         run: echo ${{ steps.exec_yamllint.outputs.message  }}
 

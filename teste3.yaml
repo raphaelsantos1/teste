@@ -5,7 +5,7 @@ metadata:
   name: sre-test
   namespace: monitoring
   labels:
-    prometheus: prometheus-app
+    prometheus: prometheus-app         
 spec:     
   groups:
     - name: SRE_TEST    

@@ -6,11 +6,11 @@ metadata:
   namespace: monitoring
   labels:
     prometheus: prometheus-app
-spec:    
+spec:
   groups:
-    - name: SRE_TEST   
-    # testeeeeeeeeeee1111eeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeee
-      rules:                  
+    - name: SRE_TEST
+    # testeeeeeeeeeee1111eeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeee
+      rules:
         - alert: SRE_TEST
       # Condition for alerting      
       # this alert uses UTC timezone, standing for 6h-18h in PST.

@@ -5,11 +5,11 @@ metadata:
   name: sre-test
   namespace: monitoring
   labels:
-    prometheus: prometheus-app         
+    prometheus: prometheus-app
 spec:
-  groups:    
-    - name: SRE_TEST   
-    # eeeeeeeeeee111111    eeeee     eeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeee
+  groups:
+    - name: SRE_TEST
+    # eeeeeeeeeee111111    eeeee     eeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeee
       rules:
         - alert: SRE_TEST
       # Condition for alerting

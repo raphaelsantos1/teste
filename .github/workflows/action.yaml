@@ -32,7 +32,8 @@ jobs:
       - name: Test
         run: cat lint_result.txt
       - name: Check file
-        run: echo ${{ steps.exec_yamllint.outputs.message  }}
+        run: echo ${{ steps.exec_yamllint.outputs.yamllint_output }} ${{ steps.exec_yamllint.outputs.message }}
+          ${{ steps.exec_yamllint.outputs.exec_yamllint }}
 
         # - name: Yamllint
       #   id: yamllint

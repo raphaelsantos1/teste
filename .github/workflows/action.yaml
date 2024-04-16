@@ -6,7 +6,7 @@ jobs:
     name: yamllint
     runs-on: ubuntu-latest
     outputs:
-      # message: ${{ steps.test.outputs.yamllint_output }}
+      message: ${{ steps.test.outputs.yamllint_output }}
       files: ${{ steps.files.outputs.files  }}
     steps:
       - name: Checkout
@@ -31,15 +31,18 @@ jobs:
       - name: test
         id: test
         run: |
-          {
-            echo "yamllint_output<<EOF"
-            cat lint_result.txt
-            echo EOF 
-          } >> "$GITHUB_ENV" 
+          echo "yamllint_output<<EOF" >> "$GITHUB_OUTPUT"
+          cat lint_result.txt >> "$GITHUB_OUTPUT"
+          echo "EOF" >> "$GITHUB_OUTPUT"
+          # {
+          #   echo "yamllint_output<<EOF"
+          #   cat lint_result.txt
+          #   echo EOF 
+          # } >> "$GITHUB_ENV" 
           exit 0
         shell: bash
       - name: Cat test
-        run: echo $yamllint_output
+        run: echo ${{ steps.test.outputs.message}}
         # - name: Yamllint
       #   id: yamllint
       #   uses: karancode/yamllint-github-action@v2.1.1

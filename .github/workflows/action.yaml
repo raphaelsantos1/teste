@@ -22,12 +22,12 @@ jobs:
       - name: Yamllint
         id: yamllint_message
         run: yamllint $(git diff --name-only ${{ github.event.before }} ${{ github.sha }})
-          --no-warning
+          --no-warning >> output.txt
         continue-on-error: true
-      - name: Promtool Check
-        uses: karancode/promtool-action@v0.0.1
-        with:
-          prom_version: 2.9.2
-          prom_check_subcommand: rules
-          prom_check_files: ${{ steps.list_files.outputs.files }}
-          prom_comment: true
+  teste:
+    name: teste
+    runs-on: ubuntu-latest
+    needs: yamllint
+    steps:
+      - name: teste
+        run: ls -lahrt && cat output.txt

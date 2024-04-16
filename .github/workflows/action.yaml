@@ -17,8 +17,9 @@ jobs:
         id: files
         run: |
           for file in $(git diff --name-only ${{ github.event.before }} ${{ github.sha }}); do
-            echo $file
+            echo $file >> files.txt
           done
+          cat files.txt
   #     - name: Test
   #       run: echo ${{ steps.files.outputs.files }}     
   #     - name: Yamllint

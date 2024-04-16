@@ -22,7 +22,7 @@ jobs:
       - name: Yamllint
         id: yamllint_message
         run: |
-          message=$(yamllint ./github/workflows/action.yaml --no-warning)
+          message=$(yamllint teste3.yaml)
           echo "output1=$message"
         continue-on-error: true
       - name: Test

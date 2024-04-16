@@ -30,11 +30,11 @@ jobs:
         continue-on-error: true
       - name: Test
         run: |
-          echo "yamllint_output<<EOF" >> "$GITHUB_OUTPUT"
-          cat lint_result.txt >> "$GITHUB_OUTPUT"
-          echo "EOF" >> "$GITHUB_OUTPUT"
+          echo "yamllint_output<<EOF" >> $GITHUB_OUTPUT
+          cat lint_result.txt >> $GITHUB_OUTPUT
+          echo "EOF" >> $GITHUB_OUTPUT
       - name: Cat test
-        run: echo ${{ steps.exec_yamllint.outputs.message }}
+        run: echo ${{ steps.exec_yamllint.outputs.yamllint_output }}
         # - name: Yamllint
       #   id: yamllint
       #   uses: karancode/yamllint-github-action@v2.1.1

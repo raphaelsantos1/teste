@@ -25,15 +25,6 @@ jobs:
       - name: Exec yamllint
         id: yamllint_output
         run: echo "message=$(yamllint ${{ steps.files.outputs.files }} --no-warnings)"
+          >> $GITHUB_OUTPUT
       - name: Test output
         run: echo ${{ steps.yamllint_output.outputs.message }}
-
-      # - name: Yamllint
-      #   id: message
-      #   uses: karancode/yamllint-github-action@v2.1.1
-      #   with:
-      #     yamllint_file_or_dir: ${{ steps.files.outputs.files }}
-      #     yamllint_strict: false
-      #     yamllint_comment: true
-      #   env:
-      #     GITHUB_ACCESS_TOKEN: ${{ secrets.GITHUB_TOKEN }}

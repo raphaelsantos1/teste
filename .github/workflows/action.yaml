@@ -30,7 +30,7 @@ jobs:
           echo "message=$(cat lint_result.txt)" >> $GITHUB_OUTPUT
         continue-on-error: true
       - name: Test
-        run: cat lint_result.txt
+        run: echo "message=$(cat lint_result.txt)" >> $GITHUB_OUTPUT
       - name: Cat test
         run: echo ${{ steps.exec_yamllint.outputs.message }}
         # - name: Yamllint

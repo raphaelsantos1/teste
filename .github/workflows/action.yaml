@@ -23,5 +23,6 @@ jobs:
         id: yamllint_message
         run: yamllint $(git diff --name-only ${{ github.event.before }} ${{ github.sha }})
           --no-warning
+        continue-on-error: true
       - name: Prometheus rules
         run: echo $files

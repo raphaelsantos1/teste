@@ -19,7 +19,7 @@ jobs:
           for file in $(git diff --name-only ${{ github.event.before }} ${{ github.sha }}); do
             echo $file >> files.txt
           done
-          echo "files=$(cat files.txt)"
+          echo "files=$(cat files.txt)" >> $GITHUB_OUTPUT
       - name: Test
         run: echo ${{ steps.files.outputs.files }}     
       - name: Yamllint

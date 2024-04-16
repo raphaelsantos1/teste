@@ -21,8 +21,7 @@ jobs:
           files=$(git diff --name-only ${{ github.event.before }} ${{ github.sha }})
       - name: Yamllint
         id: yamllint_message
-        run: yamllint $(git diff --name-only ${{ github.event.before }}
-          ${{ github.sha }}) --no-warning
-		  - name: Prometheus Rules
+        run: yamllint $(git diff --name-only ${{ github.event.before }} ${{ github.sha }})
+          --no-warning
+      - name: Prometheus rules
         run: echo $files
-

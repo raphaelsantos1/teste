@@ -22,7 +22,7 @@ jobs:
       - name: Yamllint
         id: yamllint_message
         run: |
-          message=$(yamllint $(git diff --name-only ${{ github.event.before }} ${{ github.sha }}) --no-warning)
+          message=$(yamllint $(git diff ./github/workflows/action.yaml) --no-warning)
           echo "output1=$message"
         continue-on-error: true
       - name: Test

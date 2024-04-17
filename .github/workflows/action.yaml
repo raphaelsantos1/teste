@@ -2,7 +2,7 @@
 name: Yamllint GitHub Actions
 on: [push, pull_request]
 jobs:
-  yamllint:
+  Yamllint:
     name: yamllint
     runs-on: ubuntu-latest
     outputs:
@@ -28,3 +28,11 @@ jobs:
           yamllint_file_or_dir: ${{ steps.files.outputs.files }}
           yamllint_strict: false
           yamllint_comment: true
+  Failure:
+    name: Failure
+    runs-on: ubuntu-latest
+    needs: Yamllint
+    if: failure()
+    steps:
+      - name: Error Output
+        run: echo ${{  }}

@@ -27,5 +27,6 @@ jobs:
           yamllint_file_or_dir: ${{ steps.files.outputs.files }}
           yamllint_strict: false
           yamllint_comment: true
+          yamllint_config_datapath: .yamllint_config.yaml
         env:
           GITHUB_ACCESS_TOKEN: ${{ secrets.GITHUB_TOKEN }}

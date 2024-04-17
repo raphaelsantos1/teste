@@ -43,7 +43,7 @@ jobs:
       #       cat lint_result.txt >> $GITHUB_OUTPUT
       #       echo "EOF" >> $GITHUB_OUTPUT
       - name: Cat output
-        run: ${{ steps.test.outputs.yamllint_output }}
+        run: echo "${{ steps.test.outputs.yamllint_output }}"
   failure:
     name: Failure
     needs: yamllint

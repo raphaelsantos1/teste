@@ -51,6 +51,5 @@ jobs:
     steps:
       - name: Output
         run: |
-          ${{ needs.yamllint.outputs.message }}
-          exit 0
+          echo ${{ needs.yamllint.outputs.message }}
         shell: bash

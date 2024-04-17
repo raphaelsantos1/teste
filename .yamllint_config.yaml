@@ -1,12 +1,6 @@
 ---
-
 extends: default
-
-yaml-files:
-  - '*.yaml'
-  - '*.yml'
-  - '.yamllint'
-
+yaml-files: ['*.yaml', '*.yml', .yamllint]
 rules:
   anchors: enable
   braces: enable

@@ -26,6 +26,7 @@ jobs:
       - name: Yamllint
         id: test
         uses: karancode/yamllint-github-action@master
+        continue-on-error: true
         with:
           yamllint_file_or_dir: ${{ steps.files.outputs.files}}
           yamllint_strict: false

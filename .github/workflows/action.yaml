@@ -23,25 +23,17 @@ jobs:
             echo $file >> files.txt
           done
           echo "files=$(cat files.txt| tr '\n' ' ' | sed 's/ $/\n/')" >> $GITHUB_OUTPUT
-      - name: Yamllint
-        id: test
-        uses: karancode/yamllint-github-action@master
+      - name: Exec Yamllint
+        id: exec_yamllint
+        run: |
+          yamllint ${{ steps.files.outputs.files }} --no-warnings > lint_result.txt
         continue-on-error: true
-        with:
-          yamllint_file_or_dir: ${{ steps.files.outputs.files}}
-          yamllint_strict: false
-      # - name: Exec Yamllint
-      #   id: exec_yamllint
-      #   run: |
-      #     yamllint ${{ steps.files.outputs.files }} --no-warnings > lint_result.txt
-      #   continue-on-error: true
-      # - name: test
-      #   id: test
-      #   run: |
-      #  # echo "yamllint_output=$(yamllint_output<<EOF"$'\n'"$(cat lint_result.txt)"$'\n'EOF)" >> $GITHUB_OUTPUT
-      #       echo "yamllint_output<<EOF" >> $GITHUB_OUTPUT
-      #       cat lint_result.txt >> $GITHUB_OUTPUT
-      #       echo "EOF" >> $GITHUB_OUTPUT
+      - name: test
+        id: test
+        run: |
+          echo "yamllint_output<<EOF" >> $GITHUB_OUTPUT
+          cat lint_result.txt >> $GITHUB_OUTPUT
+          echo "EOF" >> $GITHUB_OUTPUT
       - name: Cat output
         run: echo "${{ steps.test.outputs.yamllint_output }}"
   failure:
@@ -52,5 +44,5 @@ jobs:
     steps:
       - name: Output
         run: |
-          echo ${{ needs.yamllint.outputs.message }}
+          echo "${{ needs.yamllint.outputs.message }}"
         shell: bash

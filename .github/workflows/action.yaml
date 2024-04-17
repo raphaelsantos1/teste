@@ -1,6 +1,6 @@
 ---
 name: Yamllint GitHub Actions
-on: [pull_request, push]
+on: [push, pull_request]
 jobs:
   Yamllint:
     name: yamllint
@@ -9,5 +9,23 @@ jobs:
       files: ${{ steps.files.outputs.files  }}
       yamllint_output: ${{ steps.yamllint.outputs.yamllint_output }}
     steps:
-      - name: teste
-        run: exit 1
+      - name: Checkout
+        uses: actions/checkout@v4.1.2
+        with:
+          fetch-depth: 0
+      - name: List File
+        id: files
+        run: |
+          for file in $(git diff --name-only ${{ github.event.before }} ${{ github.sha }}); do
+            echo $file >> files.txt
+          done
+          echo "files=$(cat files.txt| tr '\n' ' ' | sed 's/ $/\n/')" >> $GITHUB_OUTPUT
+      - name: Yamllint
+        id: yamllint
+        uses: karancode/yamllint-github-action@master
+        with:
+          yamllint_file_or_dir: ${{ steps.files.outputs.files }}
+          yamllint_strict: false
+          yamllint_comment: true
+        env:
+          GITHUB_ACCESS_TOKEN: ${{ secrets. }}

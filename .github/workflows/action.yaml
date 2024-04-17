@@ -6,9 +6,7 @@ jobs:
     name: yamllint
     runs-on: ubuntu-latest
     outputs:
-      message: ${{ steps.output.outputs.yamllint_output }}
       files: ${{ steps.files.outputs.files  }}
-      exitcode: ${{ steps.exec_yamllint.outputs.exitcode}}
     steps:
       - name: Checkout
         uses: actions/checkout@v4.1.2
@@ -24,21 +22,9 @@ jobs:
             echo $file >> files.txt
           done
           echo "files=$(cat files.txt| tr '\n' ' ' | sed 's/ $/\n/')" >> $GITHUB_OUTPUT
-      - name: Exec Yamllint
-        id: exec_yamllint
-        run: |
-          echo "$(yamllint ${{ steps.files.outputs.files }} --no-warnings > lint_result.txt)" && \
-          echo "exitcode=$?" >> $GITHUB_OUTPUT
-          echo "yamllint_output<<EOF" >> $GITHUB_OUTPUT
-          cat lint_result.txt >> $GITHUB_OUTPUT
-          echo "EOF" >> $GITHUB_OUTPUT
-          exit 0
-      # - name: Output
-      #   id: output
-      #   run: |
-      #     if [ ${{ steps.exec_yamllint.outputs.exitcode }} -ne 0 ]; then
-      #       echo "yamllint_output<<EOF" >> $GITHUB_OUTPUT
-      #       cat lint_result.txt >> $GITHUB_OUTPUT
-      #       echo "EOF" >> $GITHUB_OUTPUT
-      #     fi
-      #     echo "Sucesso!!"
+      - name: Yamllint
+        uses: karancode/yamllint-github-action@master
+        with:
+          yamllint_file_or_dir: ${{ steps.files.outputs.files }}
+          yamllint_strict: false
+          yamllint_comment: true

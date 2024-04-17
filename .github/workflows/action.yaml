@@ -27,8 +27,8 @@ jobs:
       - name: Exec Yamllint
         id: exec_yamllint
         run: |
-          yamllint ${{ steps.files.outputs.files }} --no-warnings > lint_result.txt
-          echo "exitcode=$?" >> $GITHUB_OUTPUT
+          yamllint ${{ steps.files.outputs.files }} --no-warnings > lint_result.txt && \
+            echo "exitcode=$?" >> $GITHUB_OUTPUT
         continue-on-error: true
       - name: Output
         id: output

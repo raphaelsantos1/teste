@@ -8,7 +8,7 @@ jobs:
     outputs:
       message: ${{ steps.output.outputs.yamllint_output }}
       files: ${{ steps.files.outputs.files  }}
-      exitcode: ${{ steps.output.outputs.exitcode}}
+      exitcode: ${{ steps.exec_yamllint.outputs.exitcode}}
     steps:
       - name: Checkout
         uses: actions/checkout@v4.1.2
@@ -28,11 +28,11 @@ jobs:
         id: exec_yamllint
         run: |
           echo "$(yamllint ${{ steps.files.outputs.files }} --no-warnings > lint_result.txt)" && \
+          echo "exitcode=$?" >> $GITHUB_OUTPUT
           echo "yamllint_output<<EOF" >> $GITHUB_OUTPUT
           cat lint_result.txt >> $GITHUB_OUTPUT
           echo "EOF" >> $GITHUB_OUTPUT
-          exit $?
-
+          exit $exitcode
       # - name: Output
       #   id: output
       #   run: |

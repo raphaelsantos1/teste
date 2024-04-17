@@ -13,9 +13,6 @@ jobs:
         uses: actions/checkout@v4.1.2
         with:
           fetch-depth: 0
-      - name: Install yamllint
-        id: install
-        run: sudo apt install -y yamllint
       - name: List File
         id: files
         run: |
@@ -37,4 +34,4 @@ jobs:
     if: failure()
     steps:
       - name: Error Output
-        run: echo ${{ needs.Yamllint.outputs.yamllint_output }}
+        run: echo "${{ needs.Yamllint.outputs.yamllint_output }}"

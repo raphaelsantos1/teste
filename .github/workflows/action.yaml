@@ -16,7 +16,7 @@ jobs:
       - name: List File
         id: files
         run: |
-          for file in $(git diff --name-only ${{ github.event.before }} ${{ github.sha }}); do
+          for file in $(git diff --name-only -r HEAD^1 HEAD); do
             echo $file >> files.txt
           done
           echo "files=$(cat files.txt| tr '\n' ' ' | sed 's/ $/\n/')" >> $GITHUB_OUTPUT

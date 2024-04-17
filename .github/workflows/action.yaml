@@ -36,7 +36,6 @@ jobs:
         shell: bash
       - name: Cat output
         run: echo ${{ steps.test.outputs.yamllint_output }}
-        shell: bash
   failure:
     name: Failure
     needs: yamllint

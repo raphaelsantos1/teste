@@ -7,6 +7,7 @@ jobs:
     runs-on: ubuntu-latest
     outputs:
       files: ${{ steps.files.outputs.files  }}
+      yamllint_output: ${{ steps.yamllint.outputs.yamllint_output }}
     steps:
       - name: Checkout
         uses: actions/checkout@v4.1.2
@@ -23,6 +24,7 @@ jobs:
           done
           echo "files=$(cat files.txt| tr '\n' ' ' | sed 's/ $/\n/')" >> $GITHUB_OUTPUT
       - name: Yamllint
+        id: yamllint
         uses: karancode/yamllint-github-action@master
         with:
           yamllint_file_or_dir: ${{ steps.files.outputs.files }}
@@ -35,4 +37,4 @@ jobs:
     if: failure()
     steps:
       - name: Error Output
-        run: echo ${{  }}
+        run: echo ${{ needs.Yamllint.outputs.yamllint_output }}

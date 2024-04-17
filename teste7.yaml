@@ -1,0 +1,34 @@
+---
+apiVersion: monitoring.coreos.com/v1
+kind: PrometheusRule
+metadata:
+  name: sre-test
+  namespace: monitoring
+  labels:
+    prometheus: prometheus-app
+spec:
+  groups:
+    - name: SRE_TEST
+    # eeeeeeeeeee111111    eeeee     eeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeee
+      rules:
+        - alert: SRE_TEST
+      # Condition for alerting
+      # this alert uses UTC timezone, standing for 6h-18h in PST.
+          expr: sum(process_uptime_seconds{environment="int"}) > 1
+      # for: 6h
+      # Annotation - additional informational labels to store more information
+          annotations:
+            title: SRE_TEST
+            description: SRE_TEST
+            component: SRE_TEST
+            environment: int
+            region: amer
+            severity: info
+            team: platform
+            priority: P5
+
+      # Labels - additional labels to be attached to the alert
+          labels:
+            pagerduty: 'true'
+            namespace: monitoring
+            alertgroup: business_hours

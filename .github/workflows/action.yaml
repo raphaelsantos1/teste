@@ -32,7 +32,7 @@ jobs:
         id: test
         run: |
           # echo "yamllint_output=$(yamllint_output<<EOF"$'\n'"$(cat lint_result.txt)"$'\n'EOF)" >> $GITHUB_OUTPUT
-            echo "yamllint_output=$(cat lint_result.txt | tr '\n' ' '| sed 's/ $/\n/') >> $GITHUB_OUTPUT
+            echo "yamllint_output=$(cat lint_result.txt | tr '\n' ' '| sed 's/ $/\n/')" >> $GITHUB_OUTPUT
         shell: bash
       - name: CAT
         run: cat lint_result.txt

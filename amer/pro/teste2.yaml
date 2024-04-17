@@ -14,7 +14,9 @@ spec:
         - alert: SRE_TEST
       # Condition for alerting
       # this alert uses UTC timezone, standing for 6h-18h in PST.
-          expr: sum(sum_over_time(tms_avs_execution_duration_seconds_sum{avs_service="MICROBILT", cluster=~"amer-pro-us.*"}[10m])) / sum(sum_over_time(tms_avs_execution_duration_seconds_count{avs_service="MICROBILT", cluster=~"amer-pro-us.*"}[10m])) >3
+          expr: sum(sum_over_time(tms_avs_execution_duration_seconds_sum{avs_service="MICROBILT",
+            cluster=~"amer-pro-us.*"}[10m])) / sum(sum_over_time(tms_avs_execution_duration_seconds_count{avs_service="MICROBILT",
+            cluster=~"amer-pro-us.*"}[10m])) >3
       # for: 6h
       # Annotation - additional informational labels to store more information
           annotations:

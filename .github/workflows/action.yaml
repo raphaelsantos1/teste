@@ -24,7 +24,7 @@ jobs:
           # done
           # echo "files=$(cat files.txt| tr '\n' ' ' | sed 's/ $/\n/')" >> $GITHUB_OUTPUT
       - name: output
-        run: ${{ steps.files.outputs.files }}
+        run: echo "${{ steps.files.outputs.files }}"
       # - name: Yamllint
       #   id: yamllint
       #   uses: karancode/yamllint-github-action@master

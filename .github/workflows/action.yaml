@@ -18,15 +18,15 @@ jobs:
         id: files
         run: |
           for file in $(git diff --name-only -r HEAD^1 HEAD); do
-            echo $(dir=mkdir tmp/check_files) >> $GITHUB_OUTPUT
-            echo $file >> tmp/files.txt
+            echo $(dir=mkdir /tmp/check_files) >> $GITHUB_OUTPUT
+            touch /tmp/check_files/$file
           done
           echo "files=$(cat files.txt| tr '\n' ' ' | sed 's/ $/\n/')" >> $GITHUB_OUTPUT
       - name: Look for bad yml files
         id: step1
         uses: theodore86/polint-github-action@v2
         with:
-          path: ${{ steps.files.outputs.dir }}
+          path: ${{ steps.files.outputs.dir }}/
           exclude: .*git.*
 
       # - name: Yamllint

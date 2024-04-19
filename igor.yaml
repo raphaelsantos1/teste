@@ -28,7 +28,6 @@ spec:
             team: platform
             priority: P5
 
-
           # Labels - additional labels to be attached to the alert
           labels:
             pagerduty: 'true'

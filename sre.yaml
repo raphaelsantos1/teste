@@ -7,13 +7,12 @@ metadata:
   labels:
     prometheus: prometheus-app
 spec:
-    groups:
-         - name: SRE_TEST
-
-
+  groups:
+    - name: SRE_TEST
       # testeeeeeeeeeeeeeeeeee11111eeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeee
       rules:
         - alert: SRE_TEST
+
       # Condition for alerting
       # this alert uses UTC timezone, standing for 6h-18h in PST.
           expr: sum(process_uptime_seconds{environment="int"}) > 1
@@ -34,5 +33,3 @@ spec:
             pagerduty: 'true'
             namespace: monitoring
             alertgroup: business_hours
-
-

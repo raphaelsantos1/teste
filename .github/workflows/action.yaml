@@ -17,12 +17,8 @@ jobs:
         id: files
         run: |
           echo "files<<EOF" >> $GITHUB_OUTPUT
-          git diff --name-only -r HEAD^1 HEAD | grep '\.yaml' >> $GITHUB_OUTPUT
+          git diff --name-only -r HEAD^1 HEAD | grep -E '\.ya?ml$' >> $GITHUB_OUTPUT
           echo "EOF" >> $GITHUB_OUTPUT
-          # for file in $(git diff --name-only -r HEAD^1 HEAD); do
-          #   echo $file >> files.txt
-          # done
-          # echo "files=$(cat files.txt| tr '\n' ' ' | sed 's/ $/\n/')" >> $GITHUB_OUTPUT
       - name: Yamllint
         id: yamllint
         uses: karancode/yamllint-github-action@master

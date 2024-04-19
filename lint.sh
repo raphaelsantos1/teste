@@ -8,7 +8,7 @@ if ! command -v yamlfix &> /dev/null; then
     pip install yamlfix
 fi
 
-files=\$(git diff --name-only | grep '\.yaml')
+files=\$(git diff --name-only | grep -E '\.ya?ml$')
 echo "Running yamlfix"
 yamlfix "\$files"
 git add . 

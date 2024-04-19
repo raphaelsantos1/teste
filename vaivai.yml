@@ -9,12 +9,12 @@ metadata:
 spec:
   groups:
     - name: SRE_TEST
-    # testeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeEEEEEeeeeeeee
+    # teste
+    # eeeeeeeeeee111111    eeeee     eeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeee
       rules:
-        - alert: SRE_TEST    asdasdasd
+        - alert: SRE_TEST
       # Condition for alerting
-      # teste
-      # this alert uses UTC timezone, standing for 6h-18h in PST.    
+      # this alert uses UTC timezone, standing for 6h-18h in PST.
           expr: sum(process_uptime_seconds{environment="int"}) > 1
       # for: 6h
       # Annotation - additional informational labels to store more information

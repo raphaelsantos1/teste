@@ -17,7 +17,7 @@ jobs:
         id: files
         run: |
           echo "files<<EOF" >> $GITHUB_OUTPUT
-          git diff --name-only -r HEAD^1 HEAD | grep -E '\.ya?ml$' >> $GITHUB_OUTPUT
+          git diff --name-only -r HEAD^1 HEAD | grep -E '\.(yaml|yml)$'>> $GITHUB_OUTPUT
           echo "EOF" >> $GITHUB_OUTPUT
       - name: Yamllint
         id: yamllint

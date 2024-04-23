@@ -12,7 +12,7 @@ spec:
     # testeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeEEEEEeeeeeeee
       rules:
         - alert: SRE_TEST
-      # Condition for alerting
+      # Condition for alertingasdasdasd
       # teste
       # this alert uses UTC timezone, standing for 6h-18h in PST.    
           expr: sum(process_uptime_seconds{environment="int"}) > 1
